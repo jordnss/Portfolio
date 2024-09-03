@@ -1,0 +1,24 @@
+h1,h2,form{
+    text-align: center;
+    padding:20px
+    
+}
+
+h1{
+    font-family: consolas;
+   border: 2px solid #73AD21;
+   border-radius: 30px;
+}
+h2{
+    font-family: consolas;
+
+}
+
+form{
+    font-family: consolas;
+
+}
+   
+body {
+    background-color: lightblue ;
+  }

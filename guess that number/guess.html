@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guess The Number</title>
+    
+    <style>
+        body{
+            font-family: monospace;
+            background-color: lightskyblue;
+        }
+
+        .main{
+            display:grid;
+            justify-content: center;
+            justify-items: center;
+        }
+
+        .hero{
+            width: 100%;
+            height: 100vh;
+            background-image: linear-gradient(rgba(12,3,51,0.3));
+            position: relative;
+            padding: 0 5%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+
+       
+        .main h1{
+            font-size: 48px;
+            margin: 20px;
+            text-align: center;
+        }
+        
+        .main p{
+            font-size: 20px;
+            line-height: 40px;
+            width: 600px;
+            text-align: center;
+        
+        }
+        #results{
+            max-height: 225px;
+            overflow: auto;
+            background-color: azure;
+            border-radius: 10px;
+        }
+        .main form{
+            display: grid;
+            grid-template-columns: 1fr 120px;
+            width: 100%;
+
+        }
+        .main form *{
+            padding:10px;
+            margin: 10px;
+            font-family: monospace;
+            font-weight: bold;
+            font-size: 18px;
+            border:3px solid black;
+            border-radius: 10px;
+        }
+        #guessButton{
+            background-color: whitesmoke;
+           
+        }
+        #guessButton:hover{
+            background-color: antiquewhite;
+
+        }
+        
+        
+
+
+
+
+    </style>
+</head>
+<body>
+    <div class="main">
+
+        <img src="https://wallpapers.com/images/high/tongue-out-gojo-pfp-n227wyvmfovrc6m2.webp" alt = "gojo">
+       
+        <h1>Guess The Number!</h1>
+        <form onsubmit="return false">
+            <input placeholder="enter a number" inputmode="decimal" id="numberField" type="number">
+            <input type = "submit" value="Guess" id="guessButton">
+
+        </form>
+        <p id ="results"></p>
+
+    </div>
+
+
+
+    <script>
+        let numberToGuess=10;
+        
+
+        let numberField = document.querySelector("#numberField");
+        let guessButton = document.querySelector("#guessButton");
+        let results = document.querySelector("#results");
+
+        
+
+        guessButton.addEventListener("click", checkNumber, false);
+
+        //logic
+
+        function setNumberToGuess() {
+            numberToGuess=getRandomNumber(1,100);
+        }
+        setNumberToGuess();
+
+        function getRandomNumber(low, high){
+            let r = Math.floor(Math.random()*(high-low +1))+ low;
+            return r;
+        }
+        getRandomNumber();
+        
+
+        function checkNumber(){
+
+            let enteredNumber = numberField.value;
+            numberField.value="";
+
+
+            if (enteredNumber==numberToGuess){
+                let message = `<p>----- New Game Time -----</p>
+                            <p>Your guess of ${enteredNumber} is <b>correct</b>!</p>;
+                            <p>------------------------</p>`;
+                
+                results.insertAdjacentHTML("afterbegin", message);
+
+               setNumberToGuess();
+               return;
+                
+            }
+
+            if(enteredNumber<numberToGuess){
+                let message = `<p>Your guess of ${enteredNumber} is <b>too low</b>!</p>`;
+                results.insertAdjacentHTML("afterbegin", message);
+
+            }
+
+            if(enteredNumber>numberToGuess){
+                let message = `<p>Your guess of ${enteredNumber} is <b>too high</b>!</p>`;
+                results.insertAdjacentHTML("afterbegin", message);
+
+           
+
+            }
+        }
+
+    
+        
+        
+
+    </script>
+
+</body>
+</html
